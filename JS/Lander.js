@@ -2,10 +2,15 @@ var Lander = function(ground, scene, camera, keys) {
 
 	this.GRAVITY = -0.1;
 
-	this.geometry = new THREE.BoxGeometry(6, 5, 6);
-	this.material = new THREE.MeshLambertMaterial({color: 0xffffff});
+	this.geometry = new THREE.BoxGeometry(4, 3, 4);
+	this.material = new THREE.MeshLambertMaterial({color: 0xffffff, wireframe: false});
 	this.object = new THREE.Mesh(this.geometry, this.material);
 	scene.add(this.object);
+	
+	this.jgeometry = new THREE.PlaneGeometry(4, 4);
+	this.jmaterial = new THREE.MeshBasicMaterial({color: 0x111111});
+	this.jankyshadow = new THREE.Mesh(this.jgeometry, this.jmaterial);
+	scene.add(this.jankyshadow);
 
 	this.camera = camera;
 	this.keys = keys;
@@ -15,6 +20,8 @@ var Lander = function(ground, scene, camera, keys) {
 	this.camera.position.y = 20;
 	this.camera.position.z = 10;
 	this.camera.rotation.x = -Math.PI / 4;
+	this.jankyshadow.position.y = 0.1;
+	this.jankyshadow.rotation.x = -Math.PI / 2;
 
 	this.vx = 0.0;
 	this.vy = 0.0;
@@ -51,6 +58,9 @@ Lander.prototype.move = function(dt) {
 	this.object.rotation.x += this.rx * dt;	
 	this.object.rotation.y += this.ry * dt;	
 	this.object.rotation.z += this.rz * dt;	
+
+	this.jankyshadow.position.x = this.object.position.x;
+	this.jankyshadow.position.z = this.object.position.z;
 }
 
 /* keycodes */
