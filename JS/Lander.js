@@ -10,6 +10,9 @@ var Lander = function(ground, scene, camera, keys) {
 	this.keys = keys;
 	this.ground = ground;
 
+	this.object.position = new THREE.Vector3(0, 10, 0);
+	this.camera.position = new THREE.Vector3(10, 10, 0);
+
 	this.vx = 0;
 	this.vy = 0;
 	this.vz = 0;
@@ -42,10 +45,10 @@ Lander.prototype.move = function(dt) {
 		elem.position.y += this.vy * dt;	
 		elem.position.z += this.vz * dt;	
 
-		elem.rotation.x += this.vx * dt;	
-		elem.rotation.y += this.vy * dt;	
-		elem.rotation.z += this.vz * dt;	
 	});
+	this.object.rotation.x += this.vx * dt;	
+	this.object.rotation.y += this.vy * dt;	
+	this.object.rotation.z += this.vz * dt;	
 }
 
 /* keycodes */
