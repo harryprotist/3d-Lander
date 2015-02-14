@@ -5,6 +5,6 @@ function LandScape() {
     this.plane.rotateOnAxis( new THREE.Vector3(1,0,0), Math.PI/2 );
 }
 
-Landscape.prototype.getHeightInArea = function ( x, z ) {
+LandScape.prototype.getHeightInArea = function ( x, z ) {
     return 0;
 }

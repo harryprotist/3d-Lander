@@ -45,7 +45,7 @@ function main() {
     
     lander.update(dt);
     
-    requestAnimationFrame( render );
+    requestAnimationFrame( main );
 	renderer.render( scene, camera );
 }
 
