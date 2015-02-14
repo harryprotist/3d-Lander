@@ -3,16 +3,16 @@ var Lander = function(ground, scene, camera, keys) {
 	this.GRAVITY = -0.1;
 
 	this.geometry = new THREE.BoxGeometry(6, 5, 6);
-	this.material = new THREE.MeshLambertMaterial({"color": "#ffffff"});
+	this.material = new THREE.MeshLambertMaterial({color: 0xffffff});
 	this.object = new THREE.Mesh(this.geometry, this.material);
 
 	this.camera = camera;
 	this.keys = keys;
 	this.ground = ground;
 
-	this.object.position = new THREE.Vector3(0, 10, 0);
-	this.camera.position = new THREE.Vector3(10, 20, 0);
-	this.camera.rotation.x = Math.PI / 4;
+	this.object.position.y = 10;
+	this.camera.position.y = 10;
+	this.camera.position.z = 10;
 
 	this.vx = 0;
 	this.vy = 0;
@@ -42,9 +42,9 @@ Lander.prototype.move = function(dt) {
 	
 	[ this.object, this.camera ].forEach(function(elem, i, arr) {
 
-		elem.position.x += this.vx * dt;	
+/*		elem.position.x += this.vx * dt;	
 		elem.position.y += this.vy * dt;	
-		elem.position.z += this.vz * dt;	
+		elem.position.z += this.vz * dt;*/
 
 	});
 	this.object.rotation.x += this.vx * dt;	
@@ -68,8 +68,6 @@ Lander.prototype.update = function(dt) {
 
 	if (this.ground.getHeightInArea(this.object.position.x, this.object.position.z)) return;
 	
-	this.applyForce(0, this.GRAVITY, 0);
+	this.applyForce(0, this.GRAVITY * dt, 0);
 	this.move(dt);
 }
-	
-

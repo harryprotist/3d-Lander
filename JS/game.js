@@ -33,6 +33,7 @@ function init () {
     light.position.set( -50, 150, -50 );
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(75, WIDTH/HEIGHT, .1, 1000);
+    camera.position.z = 5;
     scene.add( light );
     landScape = new LandScape(scene);
     lander = new Lander( landScape, scene, camera, KEYS );
@@ -44,7 +45,7 @@ function main() {
     last = Date.now();
     
     lander.update(dt);
-    
+
     requestAnimationFrame( main );
 	renderer.render( scene, camera );
 }
