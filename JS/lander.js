@@ -33,4 +33,5 @@ Lander.prototype.move = function(dt) {
 Lander.prototype.update = function(dt) {
 	
 	this.applyForce(0, this.GRAVITY, 0);
+	this.move(dt);
 }
