@@ -10,6 +10,15 @@ var landScape;
 var now;
 var last;
 
+var KEYS = new Array(256);
+document.addEventListener("keydown", function (e) {
+    KEYS[e.keyCode] = true;
+});
+
+document.addEventListener("keyup", function (e) {
+    KEYS[e.keyCode] = false;
+});
+
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize( WIDTH, HEIGHT);
 
@@ -22,7 +31,7 @@ main();
 function init () {
     var scene = new THREE.Scene();
     var camera = new THREE.PerspectiveCamera(75, WIDTH/HEIGHT, .1, 1000);
-    lander = new Lander( scene, camera );
+    lander = new Lander( scene, camera, KEYS );
     landScape = new LandScape(scene);
 }
 
