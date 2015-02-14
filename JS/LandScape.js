@@ -7,4 +7,3 @@ function LandScape() {
 function getHeightInArea( x, z ){
     return 0;
 }
-    
