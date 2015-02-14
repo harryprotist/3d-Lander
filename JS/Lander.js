@@ -3,17 +3,18 @@ var Lander = function(ground, scene, camera, keys) {
 	this.GRAVITY = -0.1;
 
 	this.geometry = new THREE.BoxGeometry(6, 5, 6);
-	this.material = new THREE.MeshBasicMaterial({color: 0xffffff});
+	this.material = new THREE.MeshLambertMaterial({color: 0xffffff});
 	this.object = new THREE.Mesh(this.geometry, this.material);
-	console.log(this.object);
+	scene.add(this.object);
 
 	this.camera = camera;
 	this.keys = keys;
 	this.ground = ground;
 
-	this.object.position.y = 0;
-	this.camera.position.y = 0;
+	this.object.position.y = 10;
+	this.camera.position.y = 20;
 	this.camera.position.z = 10;
+	this.camera.rotation.x = -Math.PI / 4;
 
 	this.vx = 0.0;
 	this.vy = 0.0;
@@ -22,13 +23,6 @@ var Lander = function(ground, scene, camera, keys) {
 	this.rx = 0.0;
 	this.ry = 0.0;
 	this.rz = 0.0;
-
-	var geometry = new THREE.BoxGeometry(6, 5, 6);
-	var material = new THREE.MeshBasicMaterial({color: 0xffffff});
-	var object = new THREE.Mesh(geometry, material);
-	scene.add(object);
-	
-	this.object = object;
 }
 
 Lander.prototype.applyForce = function(x, y, z) {
@@ -75,7 +69,7 @@ Lander.prototype.update = function(dt) {
 	if (this.keys[S]) this.applyRot(-0.1 * dt, 0, 0);	
 	if (this.keys[D]) this.applyRot(0, 0, -0.1 * dt);	
 
-	if (this.ground.getHeightInArea(this.object.position.x, this.object.position.z)) return;
+	if (this.object.position.y < this.ground.getHeightInArea(this.object.position.x, this.object.position.z)) return;
 	
 	this.applyForce(0, this.GRAVITY * dt, 0);
 	this.move(dt);
