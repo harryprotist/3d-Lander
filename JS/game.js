@@ -22,12 +22,6 @@ document.addEventListener("keyup", function (e) {
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize( WIDTH, HEIGHT);
 
-window.onload = function () {
-    document.body.appendChild( renderer.domElement);
-init();
-main();
-}
-
 function init () {
     var light = new THREE.PointLight( 0xffffff, 1, 200);
     light.position.set( -50, 150, -50 );
