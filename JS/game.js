@@ -34,8 +34,8 @@ function init () {
     var scene = new THREE.Scene();
     var camera = new THREE.PerspectiveCamera(75, WIDTH/HEIGHT, .1, 1000);
     scene.add( light );
-    lander = new Lander( LandScape, scene, camera, KEYS );
     landScape = new LandScape(scene);
+    lander = new Lander( landScape, scene, camera, KEYS );
 }
 
 function main() {
