@@ -11,7 +11,8 @@ var Lander = function(ground, scene, camera, keys) {
 	this.ground = ground;
 
 	this.object.position = new THREE.Vector3(0, 10, 0);
-	this.camera.position = new THREE.Vector3(10, 10, 0);
+	this.camera.position = new THREE.Vector3(10, 20, 0);
+	this.camera.rotation.x = Math.PI / 4;
 
 	this.vx = 0;
 	this.vy = 0;
@@ -70,3 +71,5 @@ Lander.prototype.update = function(dt) {
 	this.applyForce(0, this.GRAVITY, 0);
 	this.move(dt);
 }
+	
+
