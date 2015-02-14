@@ -47,7 +47,7 @@ function main() {
 }
 
 window.onload = function () {
-    document.body.appendChild( renderer.domElement);
+    document.getElementById("CANVAS").appendChild( renderer.domElement);
     init();
     main();
 }
