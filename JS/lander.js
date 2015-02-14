@@ -12,6 +12,10 @@ var Lander = function(scene, camera, keys) {
 	this.vx = 0;
 	this.vy = 0;
 	this.vz = 0;
+	
+	this.rx = 0;
+	this.ry = 0;
+	this.rz = 0;
 
 	scene.add(this.object);
 }
@@ -22,12 +26,24 @@ Lander.prototype.applyForce = function(x, y, z) {
 	this.vy += y;
 	this.vz += z;
 }
+Lander.prototype.applyRot = function(x, y, z) {
+	
+	this.rx += x;
+	this.ry += y;
+	this.rz += z;
+}
+
 Lander.prototype.move = function(dt) {
 	
-	[ this.object.position, this.camera.position ].forEach(function(elem, i, arr) {
-		elem.x += this.vx * dt;	
-		elem.y += this.vy * dt;	
-		elem.z += this.vz * dt;	
+	[ this.object, this.camera ].forEach(function(elem, i, arr) {
+
+		elem.position.x += this.vx * dt;	
+		elem.position.y += this.vy * dt;	
+		elem.position.z += this.vz * dt;	
+
+		elem.rotation.x += this.vx * dt;	
+		elem.rotation.y += this.vy * dt;	
+		elem.rotation.z += this.vz * dt;	
 	});
 }
 
