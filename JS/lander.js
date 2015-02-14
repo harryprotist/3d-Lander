@@ -1,4 +1,4 @@
-var Lander = function(scene, camera, keys) {
+var Lander = function(ground, scene, camera, keys) {
 
 	this.GRAVITY = -0.1;
 
@@ -8,6 +8,7 @@ var Lander = function(scene, camera, keys) {
 
 	this.camera = camera;
 	this.keys = keys;
+	this.ground = ground;
 
 	this.vx = 0;
 	this.vy = 0;
@@ -60,6 +61,8 @@ Lander.prototype.update = function(dt) {
 	if (this.keys[A]) this.applyRot(0, 0, 0.1);	
 	if (this.keys[S]) this.applyRot(-0.1, 0, 0);	
 	if (this.keys[D]) this.applyRot(0, 0, -0.1);	
+
+	if (this.ground.getHeightInArea(this.object.position.x, this.object.position.z)) return;
 	
 	this.applyForce(0, this.GRAVITY, 0);
 	this.move(dt);
