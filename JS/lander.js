@@ -1,4 +1,4 @@
-var Lander = function(scene, camera) {
+var Lander = function(scene, camera, keys) {
 
 	this.GRAVITY = -0.1;
 
@@ -7,6 +7,7 @@ var Lander = function(scene, camera) {
 	this.object = new THREE.Mesh(geometry, material);
 
 	this.camera = camera;
+	this.keys = keys;
 
 	this.vx = 0;
 	this.vy = 0;
