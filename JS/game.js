@@ -30,7 +30,7 @@ main();
 
 function init () {
     var light = new THREE.PointLight( 0xffffff, 1, 200);
-    light.position.set( -50, -50, -50 );
+    light.position.set( -50, 150, -50 );
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(75, WIDTH/HEIGHT, .1, 1000);
     scene.add( light );
