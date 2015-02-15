@@ -24,15 +24,34 @@ document.addEventListener("keyup", function (e) {
 
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize( WIDTH, HEIGHT);
+renderer.shadowMapEnabled = true;
 
 
 function init () {
-    var light = new THREE.PointLight( 0xffffff, 1, 200);
-    light.position.set( -50, 50, 50 );
+    var spotLight = new THREE.SpotLight( 0xffffff, 1, 500);
+    spotLight.position.set( 50, 100, 50 );
+    spotLight.angle = 20 * Math.PI / 180;
+	spotLight.exponent = 1;
+    spotLight.castShadow = true;
+    spotLight.shadowDarkness = 1;
+    spotLight.onlyShadow = true;
+    spotLight.target.position.set( 10, 10, 10 );
+    
+    spotLight.shadowMapWidth = 1024;
+    spotLight.shadowMapHeight = 1024;
+
+    spotLight.shadowCameraNear = 10;
+    spotLight.shadowCameraFar = 4000;
+    spotLight.shadowCameraFov = 30;
+    
+    var light = new THREE.PointLight( 0xffffff, 2, 200);
+    light.position.set( 50, 100, 50);
+    
     scene = new THREE.Scene();
-    camera = new THREE.PerspectiveCamera(75, WIDTH/HEIGHT, .1, 1000);
+    camera = new THREE.OrthographicCamera( WIDTH / - 50, WIDTH / 50, HEIGHT / 50, HEIGHT / - 50, 1, 1000 );
     camera.position.z = 5;
     scene.add( light );
+    scene.add( spotLight );
 /*	var geometry = new THREE.BoxGeometry(6, 5, 6);
 	var material = new THREE.MeshBasicMaterial({color: 0xffffff});
 	var object = new THREE.Mesh(geometry, material);
