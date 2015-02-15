@@ -29,7 +29,7 @@ renderer.shadowMapEnabled = true;
 
 function init () {
     var spotLight = new THREE.SpotLight( 0xffffff, 1, 500);
-    spotLight.position.set( 50, 100, 50 );
+    spotLight.position.set( 50, 150, 50 );
     spotLight.angle = 20 * Math.PI / 180;
 	spotLight.exponent = 1;
     spotLight.castShadow = true;
@@ -44,8 +44,8 @@ function init () {
     spotLight.shadowCameraFar = 4000;
     spotLight.shadowCameraFov = 30;
     
-    var light = new THREE.PointLight( 0xffffff, 2, 200);
-    light.position.set( 50, 100, 50);
+    var light = new THREE.PointLight( 0xffffff, 2, 500);
+    light.position.set( 50, 150, 50);
     
     scene = new THREE.Scene();
     camera = new THREE.OrthographicCamera( WIDTH / - 50, WIDTH / 50, HEIGHT / 50, HEIGHT / - 50, 1, 1000 );
