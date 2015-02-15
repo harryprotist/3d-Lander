@@ -55,9 +55,9 @@ Lander.prototype.move = function(dt) {
 		elem.position.z += lander.vz * dt;
 
 	});
-	this.object.rotation.x += this.rx * dt;	
-	this.object.rotation.y += this.ry * dt;	
-	this.object.rotation.z += this.rz * dt;	
+	this.object.rotation.x = this.rx;	
+	this.object.rotation.y = this.ry;	
+	this.object.rotation.z = this.rz;	
 }
 
 /* keycodes */
@@ -71,15 +71,15 @@ Lander.prototype.update = function(dt) {
 
 	if (isNaN(dt)) return;
 
-	if (this.keys[W]) this.applyRot(0.3 * dt, 0, 0);	
-	if (this.keys[A]) this.applyRot(0, 0, 0.3 * dt);	
-	if (this.keys[S]) this.applyRot(-0.3 * dt, 0, 0);	
-	if (this.keys[D]) this.applyRot(0, 0, -0.3 * dt);	
+	if (this.keys[W]) this.applyRot(0.6 * dt, 0, 0);	
+	if (this.keys[A]) this.applyRot(0, 0, 0.6 * dt);	
+	if (this.keys[S]) this.applyRot(-0.6 * dt, 0, 0);	
+	if (this.keys[D]) this.applyRot(0, 0, -0.6 * dt);	
 
 	if (this.keys[SPACE]) this.thrust = 2;
 	else this.thrust = 0;
 
-	if (this.object.position.y < this.ground.getHeightInArea(this.object.position.x, this.object.position.z)) return;
+	if (this.object.position.y - this.height/2 < this.ground.getHeightInArea(this.object.position.x, this.object.position.z)) return;
 	
 	this.applyForce(0, this.GRAVITY * dt, 0);
 	this.applyForce(
