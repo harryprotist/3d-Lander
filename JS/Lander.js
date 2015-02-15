@@ -34,6 +34,8 @@ var Lander = function(ground, scene, camera, keys) {
 	this.rx = 0.0;
 	this.ry = 0.0;
 	this.rz = 0.0;
+	
+	this.thrust = 0.0;
 }
 
 Lander.prototype.applyForce = function(x, y, z) {
@@ -89,8 +91,16 @@ Lander.prototype.update = function(dt) {
 	if (this.keys[S]) this.applyRot(-0.1 * dt, 0, 0);	
 	if (this.keys[D]) this.applyRot(0, 0, -0.1 * dt);	
 
+	if (this.keys[SPACE]) this.thrust = 2;
+	else this.thrust = 0;
+
 	if (this.object.position.y < this.ground.getHeightInArea(this.object.position.x, this.object.position.z)) return;
 	
 	this.applyForce(0, this.GRAVITY * dt, 0);
+	this.applyForce(
+		-this.thrust * Math.sin(this.object.rotation.z) * dt, 
+		this.thrust * Math.cos(this.object.rotation.z) * dt,
+		this.thrust * Math.sin(this.object.rotation.x) * dt
+	);
 	this.move(dt);
 }
