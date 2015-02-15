@@ -11,8 +11,11 @@ var now;
 var last;
 
 var KEYS = new Array(256);
+var pause = false;
+var P = 80;
 document.addEventListener("keydown", function (e) {
     KEYS[e.keyCode] = true;
+    if (e.keyCode == P) pause = !pause;
 });
 
 document.addEventListener("keyup", function (e) {
@@ -21,6 +24,7 @@ document.addEventListener("keyup", function (e) {
 
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize( WIDTH, HEIGHT);
+
 
 function init () {
     var light = new THREE.PointLight( 0xffffff, 1, 200);
@@ -41,8 +45,13 @@ function main() {
     now = Date.now();
     dt = (now-last) / 1000;
     last = Date.now();
-    
-    lander.update(dt);
+
+
+
+    if (pause === false) {
+
+	    lander.update(dt);
+    }
 
     requestAnimationFrame( main );
 	renderer.render( scene, camera );
