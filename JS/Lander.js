@@ -84,8 +84,8 @@ Lander.prototype.update = function(dt) {
 	this.applyForce(0, this.GRAVITY * dt, 0);
 	this.applyForce(
 		-this.thrust * Math.sin(this.object.rotation.z) * dt, 
-		this.thrust * Math.cos(this.object.rotation.z) * dt,
-		this.thrust * Math.sin(this.object.rotation.x) * dt
+		 this.thrust * Math.cos(this.object.rotation.z) * dt,
+		 this.thrust * Math.sin(this.object.rotation.x) * dt
 	);
 	this.move(dt);
 }
