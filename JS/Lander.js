@@ -10,15 +10,15 @@ var Lander = function(ground, scene, camera, keys) {
 	this.object = new THREE.Mesh(this.geometry, this.material);
     this.object.castShadow = true;
 	scene.add(this.object);
-
+    
 	this.camera = camera;
 	this.keys = keys;
 	this.ground = ground;
 
-	this.object.position.y = 30;
-	this.camera.position.y = 300;
-	this.camera.position.z = 400;
-    this.camera.position.x = 150;
+	this.object.position.y = 100;
+	this.camera.position.y = 220;
+	this.camera.position.z = 70;
+    this.camera.position.x = 50;
     this.camera.lookAt(this.object.position);
     
 	this.vx = 0.0;
@@ -71,9 +71,9 @@ Lander.prototype.update = function(dt) {
 
 	if (isNaN(dt)) return;
 
-	if (this.keys[W]) this.applyRot(0.6 * dt, 0, 0);	
+	if (this.keys[W]) this.applyRot(-0.6 * dt, 0, 0);	
 	if (this.keys[A]) this.applyRot(0, 0, 0.6 * dt);	
-	if (this.keys[S]) this.applyRot(-0.6 * dt, 0, 0);	
+	if (this.keys[S]) this.applyRot(0.6 * dt, 0, 0);	
 	if (this.keys[D]) this.applyRot(0, 0, -0.6 * dt);	
 
 	if (this.keys[SPACE]) this.thrust = 2;

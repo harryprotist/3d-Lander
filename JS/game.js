@@ -1,5 +1,5 @@
-var WIDTH = 640;
-var HEIGHT = 480;
+var WIDTH = 1280;
+var HEIGHT = 720;
 
 var scene;
 var camera;
@@ -28,7 +28,7 @@ renderer.shadowMapEnabled = true;
 
 
 function init () {
-    var spotLight = new THREE.SpotLight( 0xffffff, 1, 500);
+    var spotLight = new THREE.SpotLight( 0xffffff, 1, 1500);
     spotLight.position.set( 50, 150, 50 );
     spotLight.angle = 20 * Math.PI / 180;
 	spotLight.exponent = 1;
@@ -42,13 +42,13 @@ function init () {
 
     spotLight.shadowCameraNear = 10;
     spotLight.shadowCameraFar = 4000;
-    spotLight.shadowCameraFov = 30;
+    spotLight.shadowCameraFov = 120;
     
-    var light = new THREE.PointLight( 0xffffff, 2, 500);
+    var light = new THREE.PointLight( 0xffffff, 1.7, 500);
     light.position.set( 50, 150, 50);
     
     scene = new THREE.Scene();
-    camera = new THREE.OrthographicCamera( WIDTH / - 50, WIDTH / 50, HEIGHT / 50, HEIGHT / - 50, 1, 1000 );
+    camera = new THREE.PerspectiveCamera(30, WIDTH/HEIGHT, .1, 1500 );
     camera.position.z = 5;
     scene.add( light );
     scene.add( spotLight );
@@ -77,7 +77,7 @@ function main() {
 }
 
 window.onload = function () {
-    document.getElementById("CANVAS").appendChild( renderer.domElement);
+    document.getElementById("CANVAS").appendChild( renderer.domElement );
     init();
     main();
 }
